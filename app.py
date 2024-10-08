@@ -58,7 +58,9 @@ def upload():
          return render_template('upload.html')
 
 
-
+@app.route("/x")
+def x():
+    return render_template('x.html')
 
 
 if __name__ == '__main__':
