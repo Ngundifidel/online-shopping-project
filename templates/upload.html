@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/files/css/bootstrap.css">
+    <script src="../static/files/js/bootstrap.js"></script>
+
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Include navbar -->
+        {% include 'navbar.html'  %}
+
+        <section class="row">
+
+            <div class="col-md-6">
+
+                <h3> Sell a product </h3>
+                <!-- Add multipart attribute in the form since we have an image in the form -->
+
+                <h4>{{message}}</h4>
+                <form action="/upload" method="post" enctype="multipart/form-data" >
+
+                    <input type="text" name="product_name" placeholder="Product name" class="form-control" required>
+                    <br>
+
+                    <textarea name="product_desc" id="" cols="40" rows="10" placeholder="Describe your product" class="form form-control" required></textarea>
+                    <br>
+
+                    <input type="number" name="product_cost" placeholder="Cost in KES" class="form-control" required>
+                    <br>
+
+                    <label for=""> Product category</label>
+                    <select name="product_category" id="" class="form-control" required>
+                        <option value="clothes"> clothes</option>
+                        <option value="Phones"> Phones</option>
+                        <option value="laptops"> laptops</option>
+                    </select>
+                    <br>
+
+                    <label for=""> Upload product image</label>
+                    <input type="file" name="product_image_name" class="form-control" required>
+                    <br>
+                    <input type="submit" value="Add/upload product" class="btn btn-success">
+                </form>
+
+            </div>
+
+        </section>
+
+
+    </div>
+    
+</body>
+</html>
