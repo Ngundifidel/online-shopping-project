@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/files/css/bootstrap.css">
+</head>
+<body>
+    <div class="container-fluid">
+        {% include 'navbar.html'  %}
+        <h4 class="text-success">{{message}}</h4>
+        <h4 class="text-danger">{{error}}</h4>
+
+        <h4> Create Account</h4>
+        <div class="col-md-6">
+
+        <form action="/register" method="post" >
+            <input type="text"class="form-control" placeholder="Your username" name="username"> <br> <br>
+            <input type="email" class="form-control" placeholder="Youremail" name="email"><br> <br>
+            <input type="phone" class="form-control" placeholder="Yourphone" name="phone"><br> <br>
+            <input type="password" class="form-control" placeholder="Yourpassword" name="password1"><br> <br>
+            <input type="password"class="form-control" placeholder="confirmpassword" name="password2"> <br> <br>
+
+            <input type="submit" value="sign up" class="btn btn-success"> <br> <br>
+
+            <a href=""> Already have an account?, Log in </a>
+
+         </form>
+        </div>
+    </div>
+</body>
+</html>
