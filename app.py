@@ -7,7 +7,37 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template('home.html')
+    # connection to DB
+
+    connection = pymysql.connect(host='localhost', user='root', password= '', database='soko_garden_db')
+
+    #  SQL query
+    sql = "SELECT * FROM products WHERE product_category = 'phones'"
+    sql1 =  "SELECT * FROM products WHERE product_category = 'clothes'"
+    sql2 =  "SELECT * FROM products WHERE product_category = 'laptops'"
+
+
+
+
+    cursor = connection.cursor()
+    cursor1 = connection.cursor()
+    cursor2 = connection.cursor()
+
+
+
+    cursor.execute(sql)
+    cursor1.execute(sql1)
+    cursor2.execute(sql2)
+
+
+    phones = cursor.fetchall()
+    clothes = cursor1.fetchall()
+    laptops= cursor2.fetchall()
+
+
+    return render_template('home.html', phones=phones, clothes = clothes, laptops = laptops) 
+
+  
 
 
 @app.route("/upload", methods = ['POST', 'GET'])
@@ -56,6 +86,13 @@ def upload():
 
     else:
          return render_template('upload.html')
+    
+    # route for single product
+    # We will get the product dynamic using product_id
+    @app.route("/single/<product_id>")
+    def single(product_id):
+        return "This is a single item"
+
 
 
 
