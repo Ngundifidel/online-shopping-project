@@ -4,6 +4,7 @@ import pymysql
 
 
 app = Flask(__name__)
+app.secret_key = " 12345678"
 
 @app.route("/")
 def home():
@@ -150,6 +151,53 @@ def register():
      
 
 
+# route for loggin
+@app.route ("/login",  methods = ['POST', 'GET'])
+def login():
+      if request.method == 'POST':
+               email = request.form ['email']
+               password = request.form ['password']
+
+            # connection to DB
+               connection = pymysql.connect(host='localhost', user='root', password= '', database='soko_garden_db')
+               
+              #  CURSOR
+               cursor = connection.cursor()
+               
+               sql = "Select * from users where email= %s and password = %s"
+               data = (email, password)
+
+              #  execute/run the query
+               cursor.execute(sql,data)
+
+               if cursor.rowcount == 0:
+                    #  it means lgin credentials are wrong
+                         return render_template ("login.html", error= 'invalid credentials')
+               else:
+                    #  it means the suer input is correct
+                     
+                     session['key'] = email
+                     
+                     
+                     
+                     return redirect("/")
+
+
+
+
+            
+      else:
+            
+          return render_template ("login.html")
+      
+      # log out th suer
+@app.route("/logout")
+def logout ():
+            # clear the session
+
+            session.clear()
+
+            return redirect("/")
 
 
 

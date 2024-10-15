@@ -14,9 +14,25 @@
                     </div>
                    <div class="ms-auto d-flex">
                     <!--    TODO Logout-->
-                    <a href="/login" class="btn btn-outline-primary">log in</a>
-                    
-                    <a href="/register" class="btn btn-primary ms-2">Register</a>
+                    <!-- check if user has session -->
+
+                    <!-- if they have sessions, show tyhem the email and log out button -->
+
+                    {% if  session['key']%}
+
+                        <b class="text-warning">  Hello,  {{session['key']}}</b>
+
+                        <a href="/logout" class="btn btn-primary ms-2">log out</a>
+
+
+                    {% else%}
+
+                     <!-- it means the user has no session -->
+                        <a href="/login" class="btn btn-outline-primary">log in</a>
+                        
+                        <a href="/register" class="btn btn-primary ms-2">Register</a>
+
+                    {%endif%}
 
                    </div>
 

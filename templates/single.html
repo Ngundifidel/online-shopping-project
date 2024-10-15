@@ -27,7 +27,32 @@
 
         <p>{{ product[2]}}</p>
         <br><br>
-        <a href="" class="btn btn-info"> Add to cart</a>
+       <!-- check if user has session -->
+       <!-- if user has session it means they have logged in -->
+       <!-- hence the suer can make purchase -->
+
+       {% if session ['key']%}
+
+
+       <!-- display a from to make purchase -->
+           <form action="/mpesa" method="post">
+            <input type="number" class="form-control" placeholder="Enter your phone number +254xxxx" name="=phone">
+            <br>
+            <label for="">To pay kes</label>
+            
+            <input type="number" class="form-control" value="{{ product[3]}}" name="Amount" readonly>
+            <br>
+
+            <input type="submit" class="btn btn-warning" value="Buy now">
+
+           </form>
+       {% else%}
+        <!-- it means the user doesnt have a session -->
+        <!-- Means they are not logged in -->
+            <h2 class="text-warning"> Please login to make purchse</h2>
+            <a href="/login" class="btn btn-sm btn-dark">Login</a>
+
+       {%endif%}
 
     </div>
 
