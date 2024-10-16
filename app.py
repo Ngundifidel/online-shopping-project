@@ -2,6 +2,8 @@ from flask import *
 
 import pymysql
 
+from mpesa import *
+
 
 app = Flask(__name__)
 app.secret_key = " 12345678"
@@ -190,6 +192,26 @@ def login():
             
           return render_template ("login.html")
       
+
+
+      # route for mpesa payment
+@app.route('/mpesa', methods =['POST'])
+def mpesa():
+      #  receive phone and amount from singel.html from
+       phone = request.form['phone']
+       Amount = request.form['amount']
+   
+
+# call the stk push from mpesa.py
+# the stk_push function takes 2 arguments
+# Argument 1 is phone , Argument 2 is amount
+       
+       stk_push(phone, Amount)
+
+      
+       return "Mpesa payment"
+
+
       # log out th suer
 @app.route("/logout")
 def logout ():

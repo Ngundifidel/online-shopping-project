@@ -36,11 +36,11 @@
 
        <!-- display a from to make purchase -->
            <form action="/mpesa" method="post">
-            <input type="number" class="form-control" placeholder="Enter your phone number +254xxxx" name="=phone">
+            <input type="number" class="form-control" placeholder="Enter your phone number +254xxxx" name= "phone" >
             <br>
             <label for="">To pay kes</label>
             
-            <input type="number" class="form-control" value="{{ product[3]}}" name="Amount" readonly>
+            <input type="number" class="form-control" value="{{ product[3]}}" name="amount" readonly>
             <br>
 
             <input type="submit" class="btn btn-warning" value="Buy now">
